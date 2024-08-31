@@ -19,18 +19,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    const completeRegistration = () => {
+    const finalizeRegistration = () => {
         const name = document.getElementById('studentName').value.trim();
         const classGroup = document.getElementById('classGroup').value.trim();
         if (name && classGroup) {
             const students = JSON.parse(localStorage.getItem('students') || '[]');
-            const studentIndex = students.findIndex(s => s.name === name && s.classGroup === classGroup);
-            if (studentIndex > -1) {
-                students[studentIndex].name = name;
-                students[studentIndex].classGroup = classGroup;
-            } else {
-                students.push({ name, classGroup, grades: [] });
-            }
+            // Criar um novo aluno sem modificar os existentes
+            students.push({ name, classGroup, grades: [] });
             localStorage.setItem('students', JSON.stringify(students));
             updateResults();
         } else {
@@ -56,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     document.getElementById('addGradeBtn').addEventListener('click', addGrade);
-    document.getElementById('completeRegistrationBtn').addEventListener('click', completeRegistration);
+    document.getElementById('completeRegistrationBtn').addEventListener('click', finalizeRegistration);
     document.getElementById('searchBox').addEventListener('input', updateResults);
 
     updateResults();
