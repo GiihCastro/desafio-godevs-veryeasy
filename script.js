@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('students', JSON.stringify(students));
             updateResults();
         } else {
-            alert('Preencha todos os campos corretamente.');
+            alert('Por favor, preencha todos os campos.');
         }
     };
 
