@@ -17,7 +17,7 @@ body {
 }
 
 /* Estilo para os containers */
-.container {
+.main-container {
     background-color: #ffffff;
     padding: 30px;
     margin: 20px 0;
@@ -28,11 +28,11 @@ body {
     transition: transform 0.3s ease;
 }
 
-.container:hover {
+.main-container:hover {
     transform: translateY(-5px);
 }
 
-.container h1 {
+.main-container h1 {
     text-align: center;
     margin-bottom: 20px;
     color: #2a9d8f;
@@ -42,12 +42,12 @@ body {
 }
 
 /* Estilo para o formulário e os inputs */
-.form-container {
+.form-group {
     display: flex;
     flex-direction: column;
 }
 
-.input {
+.text-input {
     padding: 15px;
     margin: 10px 0;
     border: 1px solid #ccc;
@@ -57,12 +57,12 @@ body {
     transition: border-color 0.3s ease;
 }
 
-.input:focus {
+.text-input:focus {
     border-color: #2a9d8f;
     outline: none;
 }
 
-.button {
+.action-btn {
     padding: 15px;
     margin: 10px 0;
     background-color: #2a9d8f;
@@ -76,16 +76,12 @@ body {
     transition: background-color 0.3s ease;
 }
 
-.button:hover {
+.action-btn:hover {
     background-color: #21867a;
 }
 
 /* Estilo para os resultados */
-.resultado, 
-.resultado-chunks, 
-.resultadoMaiorLetra, 
-.resultadoPalavras, 
-.media-turmas {
+.result-container {
     margin-top: 20px;
     padding: 20px;
     background-color: #e9f7f2;
@@ -98,7 +94,7 @@ body {
 }
 
 /* Estilo para a pesquisa */
-.pesquisa {
+.search-box {
     margin-top: 20px;
     padding: 15px;
     border: 1px solid #ccc;
@@ -109,29 +105,29 @@ body {
 
 /* Estilo responsivo */
 @media (max-width: 768px) {
-    .container {
+    .main-container {
         padding: 20px;
         margin: 15px 0;
     }
 
-    .button {
+    .action-btn {
         font-size: 14px;
         padding: 12px;
     }
 }
 
 @media (max-width: 480px) {
-    .container {
+    .main-container {
         padding: 15px;
         margin: 10px 0;
     }
 
-    .button {
+    .action-btn {
         font-size: 12px;
         padding: 10px;
     }
 
-    .input {
+    .text-input {
         font-size: 14px;
         padding: 12px;
     }

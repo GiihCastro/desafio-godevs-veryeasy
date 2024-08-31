@@ -1,122 +1,122 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    const adicionarNota = () => {
-        const nome = document.getElementById('nomeAluno').value.trim();
-        const turma = document.getElementById('turma').value.trim();
-        const nota = parseFloat(document.getElementById('nota').value);
-        if (nome && turma && !isNaN(nota)) {
-            const alunos = JSON.parse(localStorage.getItem('alunos') || '[]');
-            const alunoIndex = alunos.findIndex(a => a.nome === nome && a.turma === turma);
-            if (alunoIndex > -1) {
-                alunos[alunoIndex].notas.push(nota);
+    const addGrade = () => {
+        const name = document.getElementById('studentName').value.trim();
+        const classGroup = document.getElementById('classGroup').value.trim();
+        const grade = parseFloat(document.getElementById('studentGrade').value);
+        if (name && classGroup && !isNaN(grade)) {
+            const students = JSON.parse(localStorage.getItem('students') || '[]');
+            const studentIndex = students.findIndex(s => s.name === name && s.classGroup === classGroup);
+            if (studentIndex > -1) {
+                students[studentIndex].grades.push(grade);
             } else {
-                alunos.push({ nome, turma, notas: [nota] });
+                students.push({ name, classGroup, grades: [grade] });
             }
-            localStorage.setItem('alunos', JSON.stringify(alunos));
-            atualizarResultados();
+            localStorage.setItem('students', JSON.stringify(students));
+            updateResults();
         } else {
             alert('Preencha todos os campos corretamente.');
         }
     };
 
-    const finalizarCadastro = () => {
-        const nome = document.getElementById('nomeAluno').value.trim();
-        const turma = document.getElementById('turma').value.trim();
-        if (nome && turma) {
-            const alunos = JSON.parse(localStorage.getItem('alunos') || '[]');
-            const alunoIndex = alunos.findIndex(a => a.nome === nome && a.turma === turma);
-            if (alunoIndex > -1) {
-                alunos[alunoIndex].nome = nome;
-                alunos[alunoIndex].turma = turma;
+    const completeRegistration = () => {
+        const name = document.getElementById('studentName').value.trim();
+        const classGroup = document.getElementById('classGroup').value.trim();
+        if (name && classGroup) {
+            const students = JSON.parse(localStorage.getItem('students') || '[]');
+            const studentIndex = students.findIndex(s => s.name === name && s.classGroup === classGroup);
+            if (studentIndex > -1) {
+                students[studentIndex].name = name;
+                students[studentIndex].classGroup = classGroup;
             } else {
-                alunos.push({ nome, turma, notas: [] });
+                students.push({ name, classGroup, grades: [] });
             }
-            localStorage.setItem('alunos', JSON.stringify(alunos));
-            atualizarResultados();
+            localStorage.setItem('students', JSON.stringify(students));
+            updateResults();
         } else {
             alert('Preencha todos os campos corretamente.');
         }
     };
 
-    const atualizarResultados = () => {
-        const listaAlunos = document.getElementById('resultados');
-        const alunos = JSON.parse(localStorage.getItem('alunos') || '[]');
+    const updateResults = () => {
+        const resultsContainer = document.getElementById('studentResults');
+        const students = JSON.parse(localStorage.getItem('students') || '[]');
 
-        const pesquisar = document.getElementById('pesquisar').value.trim().toLowerCase();
+        const searchQuery = document.getElementById('searchBox').value.trim().toLowerCase();
 
-        const filtroAlunos = alunos.filter(aluno => 
-            aluno.nome && aluno.nome.toLowerCase().includes(pesquisar) ||
-            aluno.turma && aluno.turma.toLowerCase().includes(pesquisar)
+        const filteredStudents = students.filter(student => 
+            student.name && student.name.toLowerCase().includes(searchQuery) ||
+            student.classGroup && student.classGroup.toLowerCase().includes(searchQuery)
         );
 
-        listaAlunos.innerHTML = filtroAlunos.map(aluno => {
-            const media = aluno.notas.length ? (aluno.notas.reduce((a, b) => a + b) / aluno.notas.length).toFixed(2) : 'Não Informada';
-            return `<div>Nome: ${aluno.nome}, Turma: ${aluno.turma}, Média: ${media}</div>`;
+        resultsContainer.innerHTML = filteredStudents.map(student => {
+            const average = student.grades.length ? (student.grades.reduce((a, b) => a + b) / student.grades.length).toFixed(2) : 'Não Informada';
+            return `<div>Nome: ${student.name}, Turma: ${student.classGroup}, Média: ${average}</div>`;
         }).join('');
     };
 
-    document.getElementById('adicionarNota').addEventListener('click', adicionarNota);
-    document.getElementById('finalizarAluno').addEventListener('click', finalizarCadastro);
-    document.getElementById('pesquisar').addEventListener('input', atualizarResultados);
+    document.getElementById('addGradeBtn').addEventListener('click', addGrade);
+    document.getElementById('completeRegistrationBtn').addEventListener('click', completeRegistration);
+    document.getElementById('searchBox').addEventListener('input', updateResults);
 
-    atualizarResultados();
+    updateResults();
 
-    const criarChunks = (numero) => {
-        return Array(numero).fill('chunk').join('-');
+    const createChunks = (number) => {
+        return Array(number).fill('chunk').join('-');
     };
 
-    document.getElementById('gerarChunks').addEventListener('click', () => {
-        const numero = parseInt(document.getElementById('numero').value);
-        document.getElementById('resultadoChunks').textContent = `Resultado: ${criarChunks(numero)}`;
+    document.getElementById('generateChunksBtn').addEventListener('click', () => {
+        const number = parseInt(document.getElementById('chunkNumber').value);
+        document.getElementById('chunksResult').textContent = `Resultado: ${createChunks(number)}`;
     });
 
-    const inverterArray = (array) => {
-        let novoArray = [];
+    const reverseArray = (array) => {
+        let newArray = [];
         for (let i = array.length - 1; i >= 0; i--) {
-            novoArray[novoArray.length] = array[i];
+            newArray[newArray.length] = array[i];
         }
-        return novoArray;
+        return newArray;
     };
 
-    document.getElementById('inverterBtn').addEventListener('click', () => {
-        const arrayInput = document.getElementById('arrayInput').value.split(',').map(Number);
-        document.getElementById('resultado').textContent = `Resultado: ${inverterArray(arrayInput).join(', ')}`;
+    document.getElementById('reverseArrayBtn').addEventListener('click', () => {
+        const arrayInput = document.getElementById('arrayInputField').value.split(',').map(Number);
+        document.getElementById('arrayResult').textContent = `Resultado: ${reverseArray(arrayInput).join(', ')}`;
     });
 
-    const calcularQuadradoAlgarismos = (numero) => {
-        return Array.from(String(numero), digit => Math.pow(Number(digit), 2)).join('');
+    const calculateDigitSquare = (number) => {
+        return Array.from(String(number), digit => Math.pow(Number(digit), 2)).join('');
     };
 
-    document.getElementById('calcularQuadrado').addEventListener('click', () => {
-        const numeroQuadrado = document.getElementById('numeroQuadrado').value;
-        document.getElementById('resultadoQuadrado').textContent = `Resultado: ${calcularQuadradoAlgarismos(numeroQuadrado)}`;
+    document.getElementById('calculateDigitSquareBtn').addEventListener('click', () => {
+        const digitNumber = document.getElementById('digitNumber').value;
+        document.getElementById('digitSquareResult').textContent = `Resultado: ${calculateDigitSquare(digitNumber)}`;
     });
 
-    const encontrarMaiorLetra = (str) => {
-        let maiorLetra = '';
+    const findMaxLetter = (str) => {
+        let maxLetter = '';
         for (let i = 0; i < str.length; i++) {
-            let letra = str[i].toLowerCase();
-            if (letra > maiorLetra) {
-                maiorLetra = letra;
+            let letter = str[i].toLowerCase();
+            if (letter > maxLetter) {
+                maxLetter = letter;
             }
         }
-        return maiorLetra;
+        return maxLetter;
     };
 
-    document.getElementById('encontrarMaiorLetra').addEventListener('click', () => {
-        const stringInput = document.getElementById('stringInput').value;
-        document.getElementById('resultadoMaiorLetra').textContent = `Maior Letra: ${encontrarMaiorLetra(stringInput)}`;
+    document.getElementById('findMaxLetterBtn').addEventListener('click', () => {
+        const stringInput = document.getElementById('stringInputField').value;
+        document.getElementById('maxLetterResult').textContent = `Maior Letra: ${findMaxLetter(stringInput)}`;
     });
 
-    const inverterPalavras = (str) => {
+    const reverseWords = (str) => {
         return str
             .split(' ')
-            .map(palavra => palavra.toLowerCase().split('').reverse().join(''))
+            .map(word => word.toLowerCase().split('').reverse().join(''))
             .join(' ');
     };
 
-    document.getElementById('inverterPalavras').addEventListener('click', () => {
-        const stringPalavras = document.getElementById('stringPalavras').value;
-        document.getElementById('resultadoPalavras').textContent = `Resultado: ${inverterPalavras(stringPalavras)}`;
+    document.getElementById('reverseWordsBtn').addEventListener('click', () => {
+        const wordsInput = document.getElementById('wordsInputField').value;
+        document.getElementById('wordReverseResult').textContent = `Resultado: ${reverseWords(wordsInput)}`;
     });
 });

@@ -3,58 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Desafios</title>
+    <title>Desafios de Programação</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div id="containerCadastro" class="container">
+    <div id="cadastroContainer" class="main-container">
         <h1>Cadastro de Alunos</h1>
-        <div class="form-container">
-            <input type="text" id="nomeAluno" placeholder="Nome do Aluno" class="input">
-            <input type="text" id="turma" placeholder="Turma" class="input">
-            <input type="number" id="nota" placeholder="Adicionar Nota" class="input">
-            <button id="adicionarNota" class="button">Adicionar Nota</button>
-            <button id="finalizarAluno" class="button">Finalizar Cadastro</button>
+        <div class="form-group">
+            <input type="text" id="studentName" placeholder="Nome do Aluno" class="text-input">
+            <input type="text" id="classGroup" placeholder="Turma" class="text-input">
+            <input type="number" id="studentGrade" placeholder="Adicionar Nota" class="text-input">
+            <button id="addGradeBtn" class="action-btn">Adicionar Nota</button>
+            <button id="completeRegistrationBtn" class="action-btn">Finalizar Cadastro</button>
         </div>
-        <input type="text" id="pesquisar" placeholder="Pesquisar Aluno ou Turma" class="input pesquisa">
-        <div id="mediaTurmas" class="media-turmas"></div>
-        <div id="resultados" class="resultados"></div>
+        <input type="text" id="searchBox" placeholder="Pesquisar Aluno ou Turma" class="text-input search-box">
+        <div id="classAverageContainer" class="result-container"></div>
+        <div id="studentResults" class="result-container"></div>
     </div>
 
-    <div id="container02" class="container">
+    <div id="chunksContainer" class="main-container">
         <h1>Chunks</h1>
-        <input type="number" id="numero" placeholder="Digite um número" class="input">
-        <button id="gerarChunks" class="button">Gerar Chunks</button>
-        <div id="resultadoChunks" class="resultado-chunks"></div>
+        <input type="number" id="chunkNumber" placeholder="Digite um número" class="text-input">
+        <button id="generateChunksBtn" class="action-btn">Gerar Chunks</button>
+        <div id="chunksResult" class="result-container"></div>
     </div>
 
-    <div id="container03" class="container">
+    <div id="arrayReversalContainer" class="main-container">
         <h1>Inverter Array</h1>
-        <input type="text" id="arrayInput" placeholder="Digite os números separados por vírgula" class="input">
-        <button id="inverterBtn" class="button">Inverter Array</button>
-        <div id="resultado" class="resultado"></div>
+        <input type="text" id="arrayInputField" placeholder="Digite os números separados por vírgula" class="text-input">
+        <button id="reverseArrayBtn" class="action-btn">Inverter Array</button>
+        <div id="arrayResult" class="result-container"></div>
     </div>
 
-    <div id="container04" class="container">
+    <div id="digitSquareContainer" class="main-container">
         <h1>Quadrado dos Algarismos</h1>
-        <input type="number" id="numeroQuadrado" placeholder="Digite um número inteiro" class="input">
-        <button id="calcularQuadrado" class="button">Calcular Quadrado dos Algarismos</button>
-        <div id="resultadoQuadrado" class="resultado"></div>
+        <input type="number" id="digitNumber" placeholder="Digite um número inteiro" class="text-input">
+        <button id="calculateDigitSquareBtn" class="action-btn">Calcular Quadrado dos Algarismos</button>
+        <div id="digitSquareResult" class="result-container"></div>
     </div>
 
-    <div id="container05" class="container">
+    <div id="maxLetterContainer" class="main-container">
         <h1>Maior Letra em Ordem Alfabética</h1>
-        <input type="text" id="stringInput" placeholder="Digite uma string" class="input">
-        <button id="encontrarMaiorLetra" class="button">Encontrar Maior Letra</button>
-        <div id="resultadoMaiorLetra" class="resultado"></div>
+        <input type="text" id="stringInputField" placeholder="Digite uma string" class="text-input">
+        <button id="findMaxLetterBtn" class="action-btn">Encontrar Maior Letra</button>
+        <div id="maxLetterResult" class="result-container"></div>
     </div>
 
-    <div id="container06" class="container">
+    <div id="wordReverseContainer" class="main-container">
         <h1>Palavras Invertidas</h1>
-        <input type="text" id="stringPalavras" placeholder="Digite uma string" class="input">
-        <button id="inverterPalavras" class="button">Inverter Palavras</button>
-        <div id="resultadoPalavras" class="resultado"></div>
+        <input type="text" id="wordsInputField" placeholder="Digite uma string" class="text-input">
+        <button id="reverseWordsBtn" class="action-btn">Inverter Palavras</button>
+        <div id="wordReverseResult" class="result-container"></div>
     </div>
 
     <script src="script.js"></script>
